@@ -1,0 +1,47 @@
+{
+  "name": "中古小公举",
+  "action": {},
+  "manifest_version": 2,
+  "version": "0.2",
+  "description": "一键复制微信文章到中古网站",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "clipboardWrite",
+    "clipboardRead"
+  ],
+  "host_permissions": [
+    "*://*.lanhuapp.com/*"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.weixin.qq.com/*"
+      ],
+      "js": [
+        "content-script.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "inject-script.js"
+  ],
+  "externally_connectable": {
+    "ids": [
+      "hnbhijaefdhjodlaoabalnjokafaclbb"
+    ],
+    "matches": [
+      "*://*.weixin.qq.com/*"
+    ]
+  }
+}

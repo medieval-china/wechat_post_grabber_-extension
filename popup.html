@@ -1,0 +1,56 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+          width: 300px;
+          height: 200px;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+      }
+      .title {
+        font-size: 15px;
+        color: #333;
+        text-align: center;
+      }
+      .btn-box {
+        margin-top: 20px;
+      }
+      .btn-box button {
+        cursor: pointer;
+      }
+      .update-btn-box {
+        display: none;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="popup.js"></script>
+
+  </head>
+  <body>
+    <div id="title" class="title"></div>
+    <div class="btn-box copy-btn-box">
+      <button id="btn">一键复制</button>
+    </div>
+    <script src="js/standalone@2.3.2.js"></script>
+    <script src="js/parser-html@2.3.2.js"></script>
+  </body>
+</html>
+
