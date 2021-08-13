@@ -84,8 +84,8 @@ function lintCode(html) {
 }
 
 // 复制
-function handleCopy(content) {
-  const lintHTML = `<exclude-tag>\r\n${lintCode(content)}</exclude-tag>\r\n`
+function handleCopy(content, tab) {
+  const lintHTML = `<exclude-tag>\r\n<!-- 原文链接: ${tab.url} -->\r\n${lintCode(content)}</exclude-tag>\r\n`
   console.log('handleCopy:', lintHTML)
   unsafeSetClipboard(lintHTML).then(() => {
     renderTitle('🦌 哒哒哒，抓取完毕。<br />去编辑器粘贴吧～')
@@ -93,27 +93,19 @@ function handleCopy(content) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('#btn').addEventListener('click',  () => {
-    sendMessage(tab.id, 'check', copiedContent => {
-      handleCopy(copiedContent)
-    })
-  })
-
-  getCurrentTabUrl(function(url) {
-    const titleEl = document.querySelector('#title')
+  getCurrentTab().then(tab => {
+    const url = tab.url
 
     if (url.includes('mp.weixin.qq.com')) {
       renderTitle('抓取中...<br /> 稍等片刻')
       document.querySelector('#btn').style.display = 'none'
-      getCurrentTab().then(tab => {
-        sendMessage(tab.id, 'check', copiedContent => {
-          handleCopy(copiedContent)
-        })
+      sendMessage(tab.id, 'check', copiedContent => {
+        handleCopy(copiedContent, tab)
       })
     } else {
       renderTitle('当前页面不是微信公众号文章页面，请检查后重试！')
       document.querySelector('#btn').style.display = 'none'
     }
-    console.log(url)
-  });
+  })
+
 });
