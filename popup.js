@@ -85,7 +85,7 @@ function lintCode(html) {
 
 // 复制
 function handleCopy(content) {
-  const lintHTML = `<exclude-tag>\n${lintCode(content)}</exclude-tag>`
+  const lintHTML = `<exclude-tag>\r\n${lintCode(content)}</exclude-tag>\r\n`
   console.log('handleCopy:', lintHTML)
   unsafeSetClipboard(lintHTML).then(() => {
     renderTitle('🦌 哒哒哒，抓取完毕。<br />去编辑器粘贴吧～')
