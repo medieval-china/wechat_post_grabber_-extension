@@ -22,7 +22,7 @@ function grabPost() {
 
   filterDomNode(newContentNode)
 
-  const copyHTML = `<exclude-tag>${newContentNode.outerHTML}</exclude-tag>`
+  const copyHTML = `${newContentNode.outerHTML}`
 
   return copyHTML
 }
